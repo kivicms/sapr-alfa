@@ -7,9 +7,12 @@ use App\Models\Calc;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * Class CalcController
+ * @package App\Http\Controllers
+ */
 class CalcController extends Controller
 {
-
     /**
      * @return ResourceCollection
      */
@@ -53,11 +56,7 @@ class CalcController extends Controller
     protected function calc(array $array, string $method, int $width): float
     {
         $sum = 0;
-        if ($method == 'main') {
-            $j = 1;
-        } else {
-            $j = $width;
-        }
+        $j = ($method == 'main') ? 1 : $width;
         for ($i = 0; $i < $width; $i++) {
             $sum = $sum + $array[$i][$j];
             if ($method == 'main') {
@@ -66,6 +65,7 @@ class CalcController extends Controller
                 $j--;
             }
         }
+
         return $sum;
     }
 }
