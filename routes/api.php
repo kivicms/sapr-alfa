@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\CalcController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('api')->prefix('auth')->namespace('Auth')->group(
+    function () {
+        Route::post('register', [AuthController::class, 'register'])->name('register');
+        Route::post('login', [AuthController::class, 'login'])->name('login');
+    }
+);
+
+Route::middleware('api')->group(
+    function () {
+        Route::get('create', [CalcController::class, 'create'])->name('calcCreate');
+        Route::get('calcs', [CalcController::class, 'calcs'])->name('calcs');
+        Route::get('generate', [CalcController::class, 'generate'])->name('generate');
+    }
+);
