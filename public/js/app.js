@@ -1990,14 +1990,26 @@ function configRoutes() {
     }
   }, {
     path: '/',
-    redirect: '/dashboard',
+    redirect: '/calcs',
     name: 'Главная',
     component: TheContainer,
     children: [{
-      path: '/dashboard',
-      name: 'Статистика',
+      path: '/calcs',
+      name: 'Мои расчеты',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ "resources_js_views_dashboard_Dashboard_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/dashboard/Dashboard */ "./resources/js/views/dashboard/Dashboard.vue"));
+        return __webpack_require__.e(/*! import() */ "resources_js_views_calc_CalcIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/calc/CalcIndex */ "./resources/js/views/calc/CalcIndex.vue"));
+      }
+    }, {
+      path: '/create',
+      name: 'Добавить',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ "resources_js_views_calc_CalcCreate_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/calc/CalcCreate */ "./resources/js/views/calc/CalcCreate.vue"));
+      }
+    }, {
+      path: 'calc/:id',
+      name: 'Просмотр',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ "resources_js_views_calc_CalcView_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/calc/CalcView */ "./resources/js/views/calc/CalcView.vue"));
       }
     }]
   }];
@@ -54235,7 +54247,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_containers_TheContainer_vue":1,"resources_js_views_pages_Login_vue":1,"resources_js_views_pages_Register_vue":1,"resources_js_views_dashboard_Dashboard_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_containers_TheContainer_vue":1,"resources_js_views_pages_Login_vue":1,"resources_js_views_pages_Register_vue":1,"resources_js_views_calc_CalcIndex_vue":1,"resources_js_views_calc_CalcCreate_vue":1,"resources_js_views_calc_CalcView_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

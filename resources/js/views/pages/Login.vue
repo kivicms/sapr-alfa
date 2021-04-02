@@ -36,7 +36,7 @@ export default {
       console.log('login')
       this.$store.dispatch('login', this.payload)
           .then(() => {
-            this.$router.push('/dashboard')
+            this.$router.push('/calcs')
           })
           .catch(error => {
             console.log('Ошибка авторизации')

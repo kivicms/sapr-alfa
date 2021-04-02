@@ -55,7 +55,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       console.log('login');
       this.$store.dispatch('login', this.payload).then(function () {
-        _this.$router.push('/dashboard');
+        _this.$router.push('/calcs');
       })["catch"](function (error) {
         console.log('Ошибка авторизации');
         console.log(error);

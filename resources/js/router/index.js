@@ -33,14 +33,24 @@ function configRoutes() {
     },
     {
       path: '/',
-      redirect: '/dashboard',
+      redirect: '/calcs',
       name: 'Главная',
       component: TheContainer,
       children: [
         {
-          path: '/dashboard',
-          name: 'Статистика',
-          component: () => import('../views/dashboard/Dashboard'),
+          path: '/calcs',
+          name: 'Мои расчеты',
+          component: () => import('../views/calc/CalcIndex'),
+        },
+        {
+          path: '/create',
+          name: 'Добавить',
+          component: () => import('../views/calc/CalcCreate'),
+        },
+        {
+          path: 'calc/:id',
+          name: 'Просмотр',
+          component: () => import('../views/calc/CalcView'),
         }
       ]
     }

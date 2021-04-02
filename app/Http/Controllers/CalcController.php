@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Concerns\Matrix;
+use App\Http\Resources\CalcResource;
 use App\Http\Resources\CalcResourceCollection;
 use App\Models\Calc;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
@@ -13,59 +14,42 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
  */
 class CalcController extends Controller
 {
-    /**
-     * @return ResourceCollection
-     */
-    public function calcs(): ResourceCollection
-    {
-        $user = auth()->user();
-        $models = Calc::where('user_id', $user->id)->all();
+    use Matrix;
 
-        return CalcResourceCollection::collection($models);
+    /**
+     * @return Calc[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function calcs()
+    {
+        return Calc::all();
     }
 
     /**
-     * @return JsonResponse
+     * @param int $id
+     * @return CalcResource
      */
-    public function generate()
+    public function view(int $id): CalcResource
     {
-        $width = 10;
-        $matrix = [];
+        return new CalcResource(Calc::where('id', $id)->first());
+    }
 
-        for ($i = 0; $i < $width; $i++) {
-            for ($j = 0; $j < $width; $j++) {
-                $matrix[$i][$j] = rand(100);
-            }
-        }
+    /**
+     * @param int $width
+     * @return CalcResource
+     */
+    public function create(int $width): CalcResource
+    {
+        $result = $this->generate($width);
 
-        return response()->json(
+        $model = Calc::create(
             [
-                'matrix' => $matrix,
-                'mainValue' => $this->calc($matrix, 'main', $width),
-                'diagonalValue' => $this->calc($matrix, 'main', $width)
+                'user_id' => auth()->user()->id,
+                'matrix' => $result['matrix'],
+                'main_value' => $result['mainValue'],
+                'diagonal_value' => $result['diagonalValue'],
             ]
         );
-    }
 
-    /**
-     * @param array $array
-     * @param string $method
-     * @param int $width
-     * @return float
-     */
-    protected function calc(array $array, string $method, int $width): float
-    {
-        $sum = 0;
-        $j = ($method == 'main') ? 1 : $width;
-        for ($i = 0; $i < $width; $i++) {
-            $sum = $sum + $array[$i][$j];
-            if ($method == 'main') {
-                $j++;
-            } else {
-                $j--;
-            }
-        }
-
-        return $sum;
+        return new CalcResource($model);
     }
 }

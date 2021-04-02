@@ -24,8 +24,8 @@ Route::middleware('api')->prefix('auth')->namespace('Auth')->group(
 
 Route::middleware('api')->group(
     function () {
-        Route::get('create', [CalcController::class, 'create'])->name('calcCreate');
         Route::get('calcs', [CalcController::class, 'calcs'])->name('calcs');
-        Route::get('generate', [CalcController::class, 'generate'])->name('generate');
+        Route::get('create', [CalcController::class, 'create'])->name('create');
+        Route::get('view/{id}', [CalcController::class, 'view'])->name('view');
     }
 );

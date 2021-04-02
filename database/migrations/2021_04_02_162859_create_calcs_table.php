@@ -15,9 +15,10 @@ class CreateCalcsTable extends Migration
     {
         Schema::create('calcs', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->json('value')->nullable();
-            $table->float('result')->nullable();
+            $table->bigInteger('user_id')->nullable();
+            $table->json('matrix')->nullable();
+            $table->float('main_value')->nullable();
+            $table->float('diagonal_value')->nullable();
             $table->timestamps();
         });
     }

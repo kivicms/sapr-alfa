@@ -40,7 +40,7 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
-        $user = $this->guard()->user();
+        $user = \auth()->user();
         return response(
             [
                 'status' => 'success',
