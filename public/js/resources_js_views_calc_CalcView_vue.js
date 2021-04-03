@@ -25,12 +25,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CalcView",
   data: function data() {
     return {
-      isLoading: false,
+      isLoading: true,
       entry: null
     };
   },
@@ -42,7 +59,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/view/' + id).then(function (result) {
-        console.log(result.data.data);
         _this.entry = result.data.data;
         _this.isLoading = false;
       });
@@ -144,7 +160,63 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       !_vm.isLoading
         ? _c("div", { staticClass: "col-12" }, [
-            _c("h1", [_vm._v("Просмотр расчета ")])
+            _c("h1", [_vm._v("Просмотр расчета " + _vm._s(_vm.entry.id))]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table table-hover table-bordered" }, [
+              _c("thead", [
+                _c(
+                  "tr",
+                  [
+                    _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.entry.matrix, function(e, index) {
+                      return _c(
+                        "th",
+                        { key: index, staticClass: "text-center" },
+                        [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(index + 1) +
+                              "\n            "
+                          )
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.entry.matrix, function(e, index) {
+                  return _c(
+                    "tr",
+                    [
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(index + 1))
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(e, function(m, i) {
+                        return _c(
+                          "td",
+                          { key: i, staticClass: "text-center" },
+                          [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(e[i]) +
+                                "\n            "
+                            )
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                }),
+                0
+              )
+            ])
           ])
         : _vm._e()
     ])

@@ -44,6 +44,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CalcIndex",
@@ -177,6 +179,8 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(item.diagonal_value))]),
                 _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.sum_columns))]),
+                _vm._v(" "),
                 _c(
                   "td",
                   [
@@ -209,6 +213,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Главная")]),
         _vm._v(" "),
         _c("th", [_vm._v("Побочная")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Сумма столбцов")]),
         _vm._v(" "),
         _c("th", [_vm._v("Операции")])
       ])

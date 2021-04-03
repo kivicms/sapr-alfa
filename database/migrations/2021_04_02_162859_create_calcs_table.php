@@ -19,6 +19,7 @@ class CreateCalcsTable extends Migration
             $table->json('matrix')->nullable();
             $table->float('main_value')->nullable();
             $table->float('diagonal_value')->nullable();
+            $table->json('sum_columns')->nullable();
             $table->timestamps();
         });
     }

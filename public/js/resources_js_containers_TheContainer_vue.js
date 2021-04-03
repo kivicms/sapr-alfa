@@ -134,7 +134,7 @@ var render = function() {
               [
                 _c(
                   "router-link",
-                  { staticClass: "nav-item nav-link", attrs: { to: "calcs" } },
+                  { staticClass: "nav-item nav-link", attrs: { to: "/calcs" } },
                   [_vm._v("Мои расчеты")]
                 ),
                 _vm._v(" "),

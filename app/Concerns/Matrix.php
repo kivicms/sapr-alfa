@@ -25,7 +25,8 @@ trait Matrix
         return [
             'matrix' => $matrix,
             'mainValue' => $this->calc($matrix, 'main', $width),
-            'diagonalValue' => $this->calc($matrix, 'main', $width)
+            'diagonalValue' => $this->calc($matrix, 'main', $width),
+            'sumColumns' => $this->calcColumns($matrix),
         ];
     }
 
@@ -45,5 +46,24 @@ trait Matrix
         }
 
         return $sum;
+    }
+
+    /**
+     * @param array $array
+     * @return array
+     */
+    private function calcColumns(array $array): array
+    {
+        $width = count ($array[0]);
+
+        $result = array_fill(0, $width, 0);
+
+        for ($i = 0; $i < $width; $i ++) {
+            for ($j = 0; $j < $width; $j ++) {
+                $result[$j] += $array[$j][$i];
+            }
+        }
+
+        return $result;
     }
 }

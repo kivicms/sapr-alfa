@@ -9,6 +9,7 @@
             <th>Матрица</th>
             <th>Главная</th>
             <th>Побочная</th>
+            <th>Сумма столбцов</th>
             <th>Операции</th>
           </tr>
           </thead>
@@ -18,6 +19,7 @@
             <td>{{ item.matrix }}</td>
             <td>{{ item.main_value }}</td>
             <td>{{ item.diagonal_value }}</td>
+            <td>{{ item.sum_columns }}</td>
             <td>
               <router-link :to="'/calc/' + item.id">Детально</router-link>
             </td>

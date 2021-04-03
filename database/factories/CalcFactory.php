@@ -30,6 +30,7 @@ class CalcFactory extends Factory
             'matrix' => $result['matrix'],
             'main_value' => $result['mainValue'],
             'diagonal_value' => $result['diagonalValue'],
+            'sum_columns' => $result['sumColumns']
         ];
     }
 }
